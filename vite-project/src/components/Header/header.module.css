@@ -1,0 +1,137 @@
+.fixed {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #232f3e;
+  color: white;
+  padding: 10px 20px;
+}
+
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo_container img {
+  width: 120px;
+}
+
+.delivery {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search_container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 5px;
+}
+
+.search_input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search_button {
+  background-color: #febd69;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.right_links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.language_container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.account_link,
+.orders_link,
+.cart {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cart span {
+  background-color: #febd69;
+  border-radius: 50%;
+  padding: 5px 10px;
+  color: black;
+  font-weight: bold;
+}
+/* General Reset for Lower Header */
+.Lower_container {
+  background-color: var(--primary-color); /* Light orange background */
+  padding: 10px 20px;
+}
+
+.Lower_container ul {
+  display: flex;
+  justify-content: space-around; /* Evenly space items */
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Lower_container li {
+  font-size: 16px;
+  font-weight: 500;
+  color: white; /* White text */
+  cursor: pointer;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.Lower_container li:hover {
+  background-color: var(--primary-shade); /* Darker shade on hover */
+  border-radius: 5px;
+}
+
+.Lower_container li p {
+  margin: 0;
+}
+
+/* Styling for the Menu Icon (if used inside a mobile-responsive menu) */
+.Lower_container .menu-icon {
+  display: none; /* Hide menu icon by default */
+}
+
+/* Responsive Design for smaller screens (Mobile) */
+@media (max-width: 768px) {
+  .Lower_container ul {
+    flex-direction: column; /* Stack items vertically on mobile */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  .Lower_container li {
+    width: 100%; /* Full width for each item */
+    text-align: left; /* Left align text */
+    padding: 12px 20px;
+  }
+
+  .Lower_container .menu-icon {
+    display: block; /* Show menu icon on smaller screens */
+    font-size: 30px;
+    color: white;
+  }
+}
