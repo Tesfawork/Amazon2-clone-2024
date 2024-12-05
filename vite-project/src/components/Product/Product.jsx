@@ -1,43 +1,70 @@
-import React, { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
+/** @format */
+
+// import  {useEffect, useState } from 'react'
+// import axios from 'axios'
+// import ProductCard from './ProductCard'
+// import style from './Product.module.css'
+// function Product() {
+//     const [products, setProducts] =useState()
+//     useEffect(() => {
+//         axios.get('https://fakestoreapi.com/products')
+//         .then((res)=>{
+//             setProducts(res.data)
+
+//         })
+//         .catch((err) => {
+//            console.log(err)
+//         }  )
+
+//     }, [])
+
+//   return (
+//     <section className= {style.products_container}>
+//       {products && products.map((singleProduct) => (
+//         <ProductCard key={singleProduct.id} product={singleProduct} />
+//       ))}
+//     </section>
+//   )
+
+// }
+
+// export default Product
+
+import { useEffect, useState } from "react";
 import axios from "axios";
-import Loader from "../Loader/Loader";
-import classes from "./product.module.css";
+import ProductCard from "./ProductCard";
+import style from "./Product.module.css";
 
 function Product() {
-  const [products, setProducts] = useState([]); // Initialize with an empty array
-  const [isLoading, setIsLoading] = useState(true); // Correct loading state
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true); // Start loading
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
-        setProducts(res.data); // Update products state
-        setIsLoading(false); // Stop loading
+        setProducts(res.data);
       })
       .catch((err) => {
-        console.error("Error fetching products:", err); // Handle errors
-        setIsLoading(false); // Stop loading even on error
+        console.log(err);
       });
   }, []);
 
   return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <section className={classes.products_container}>
-          {products.map((singleProduct) => (
-            <ProductCard
-              renderAdd={true}
-              product={singleProduct}
-              key={singleProduct.id}
-            />
-          ))}
-        </section>
-      )}
-    </>
+    <section className={style.product_container}>
+      {products?.map((singleProduct) => (
+        <ProductCard
+          product={singleProduct}
+          key={singleProduct.id}
+          renderAdd={true}
+          // key={id}
+          // id={id.toString()}
+          // title={title}
+          // price={price}
+          // image={image}
+          // rating={rating?.rate || 0}
+        />
+      ))}
+    </section>
   );
 }
 

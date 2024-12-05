@@ -1,20 +1,12 @@
-import React from "react";
+/** @format */
 import { BrowserRouter as Router } from "react-router-dom";
-import { Routes } from "react-router-dom";
-import "./App.css";
-import Header from "./components/Header/Header";
-import Routing from "./Routing";
-import CarouselEffect from "./components/Carousel/CarouselEffect";
-
+import "./index.css";
+import AppRouter from "./Router";
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <CarouselEffect />
-        <Routing />
-      </div>
-    </Router>
+    // <Router>
+    <AppRouter />
+    // </Router>
   );
 }
 

@@ -1,12 +1,11 @@
-/* Reset default padding and margin, and set font family globally */
+/** @format */
+
 * {
   padding: 0;
   margin: 0;
   font-family: sans-serif;
 }
-
-/* Define global CSS variables (custom properties) */
 :root {
-  --primary-color: #febd69; /* Light orange */
-  --primary-shade: #d49644; /* Darker orange */
+  --primary-color: #febd69;
+  --primary-shade: #d49644;
 }

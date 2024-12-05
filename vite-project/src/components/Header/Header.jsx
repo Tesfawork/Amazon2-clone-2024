@@ -1,93 +1,86 @@
-import React, { useContext } from "react";
+/** @format */
+
+// import ksa from '../../assets/ksa.jpg'
+import { FaSearch } from "react-icons/fa";
+import { CiShoppingCart } from "react-icons/ci";
+import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import Classes from "./header.module.css"; // Fixed the import (ensure proper naming)
-import { TfiLocationPin } from "react-icons/tfi";
-import { FaSearch, FaCartArrowDown } from "react-icons/fa";
 import LowerHeader from "./LowerHeader";
+import style from "./Header.module.css";
+import { useContext } from "react";
 import { DataContext } from "../DataProvider/DataProvider";
-// import { AmazonLogo } from "../../assets/image/Amazon-icon.png";
-
 function Header() {
-  const [{ basket }] = useContext(DataContext);
-
-  // Calculate total items in the basket
-  const totalItem = basket?.reduce((amount, item) => item.amount + amount, 0);
-
+  const [{ basket }, dispatch] = useContext(DataContext);
+  console.log(basket.length);
   return (
-    <>
-      <section className={Classes.fixed}>
-        <div className={Classes.header_container}>
-          {/* Logo */}
-          <div className={Classes.logo_container}>
-            <Link to="/">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr1XSwtJLWmkQnv6XVQNv_VnV0Pz82bfk9s8jwitFC02y2idezKxguarSJ3dWaUDKprtg&usqp=CAU"
-                alt="Amazon logo"
-              />
-            </Link>
-          </div>
-
-          {/* Delivery */}
-          <div className={Classes.delivery}>
-            <span>
-              <TfiLocationPin />
-            </span>
+    <section className={style.fixed}>
+      <div className={style.header_container}>
+        <div className={style.logo_container}>
+          {/* logo */}
+          <Link to="/">
+            <img
+              src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+              alt="Amazon logo"
+            />
+          </Link>
+          {/* delivery */}
+          <div className={style.delivery}>
+            <span>{<FaLocationDot />}</span>
             <div>
               <p>Deliver to</p>
-              <span>Ethiopia</span>
+              <span>
+                {" "}
+                Addis Ababa,
+                <br />
+                Ethiopia
+              </span>
             </div>
           </div>
+        </div>
+        <div className={style.search}>
+          {/* search bar */}
+          <select name="" id="">
+            <option value="">All</option>
+          </select>
+          <input type="text" name="" id="" placeholder=" search product" />
+          {<FaSearch size={25} />}
+        </div>
+        {/* rightSide  */}
 
-          {/* Search */}
-          <div className={Classes.search_container}>
-            <select name="category" id="category">
-              <option value="">All</option>
-            </select>
-            <input
-              type="text"
-              placeholder="Search products"
-              className={Classes.search_input}
-            />
-            <button className={Classes.search_button}>
-              <FaSearch />
-            </button>
-          </div>
-
-          {/* Right-side Links */}
-          <div className={Classes.right_links}>
-            {/* Language */}
-            <div className={Classes.language_container}>
+        <div>
+          <div className={style.order_container}>
+            <a href="" className={style.language}>
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg"
-                alt="USA flag"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg/188px-Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg.png"
+                alt=""
               />
-              <select name="language" id="language">
-                <option value="en">EN</option>
+              <select name="" id="">
+                <option value="">EN</option>
               </select>
-            </div>
+            </a>
 
-            {/* Account */}
-            <Link to="/signin" className={Classes.account_link}>
-              <p>Sign in</p>
-              <span>Account & Lists</span>
+            {/* three components  */}
+            <Link to="/auth">
+              <div>
+                <p>Sign In</p>
+                <span> Account & Lists</span>
+              </div>
             </Link>
-
-            {/* Orders */}
-            <Link to="/orders" className={Classes.orders_link}>
-              <p>Returns</p>
+            {/* order */}
+            <Link to="/orders">
+              <p>returns</p>
               <span>& Orders</span>
             </Link>
-
-            {/* Cart */}
-            <Link to="/cart" className={Classes.cart}>
-              <FaCartArrowDown size={35} />
-              <span>{totalItem}</span>
+            {/* cart */}
+            <Link to="/cart" className={style.cart}>
+              {<CiShoppingCart size={35} />}
+              <span>{basket.length}</span>
             </Link>
           </div>
         </div>
-      </section>
+      </div>
       <LowerHeader />
-    </>
+    </section>
   );
 }
 

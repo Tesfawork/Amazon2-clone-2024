@@ -1,61 +1,59 @@
+/** @format */
+
+import { useReducer } from "react";
 import { Type } from "./action.type";
 
-const initialState = {
+export const initialState = {
   basket: [],
 };
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
   switch (action.type) {
-    case Type.ADD_TO_BASKET: {
+    case Type.ADD_TO_BASKET:
       // Check if the item already exists in the basket
       const existingItem = state.basket.find(
         (item) => item.id === action.item.id
       );
       if (!existingItem) {
-        // If the item doesn't exist, add it with amount 1
+        // Add new item to the basket
         return {
           ...state,
           basket: [...state.basket, { ...action.item, amount: 1 }],
         };
+      } else {
+        // Update the amount of the existing item
+        const updatedBasket = state.basket.map((item) =>
+          item.id === action.item.id
+            ? { ...item, amount: item.amount + 1 }
+            : item
+        );
+        return {
+          ...state,
+          basket: updatedBasket,
+        };
       }
-
-      // If the item exists, update its amount
-      const updatedBasket = state.basket.map((item) =>
-        item.id === action.item.id ? { ...item, amount: item.amount + 1 } : item
-      );
-
-      return {
-        ...state,
-        basket: updatedBasket,
-      };
-    }
-
-    case Type.REMOVE_FROM_BASKET: {
+    case Type.REMOVE_FROM_BASKET:
+      // Find the index of the item to remove
       const index = state.basket.findIndex((item) => item.id === action.id);
-      const newBasket = [...state.basket];
+      let newBasket = [...state.basket];
 
       if (index >= 0) {
         if (newBasket[index].amount > 1) {
-          // Decrease the item's amount if it's greater than 1
+          // Decrease the amount if it's greater than 1
           newBasket[index] = {
             ...newBasket[index],
             amount: newBasket[index].amount - 1,
           };
         } else {
-          // Remove the item entirely if the amount is 1
+          // Remove the item from the basket
           newBasket.splice(index, 1);
         }
       }
-
       return {
         ...state,
         basket: newBasket,
       };
-    }
-
     default:
-      return state; // Default case returns the unchanged state
+      return state;
   }
 };
-
-export { initialState, reducer };

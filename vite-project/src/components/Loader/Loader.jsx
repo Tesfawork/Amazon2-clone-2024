@@ -1,19 +1,22 @@
-import React from "react";
-import { FadeLoader } from "react-spinners";
+/** @format */
 
-function Loader({ color = "#36d7b7", size = 150 }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "50vh",
-      }}
-    >
-      <FadeLoader color={color} height={size} />
-    </div>
-  );
-}
+// /** @format */
 
-export default Loader;
+// import React from "react";
+// import { DotLoader } from "react-spinners";
+// function Loader() {
+//   return (
+//     <div
+//       style={{
+//         display: "flex",
+//         alignItems: "center",
+//         justifyContent: "center",
+//         height: "50vh",
+//       }}
+//     >
+//       <DotLoader />
+//     </div>
+//   );
+// }
+
+// export default Loader;

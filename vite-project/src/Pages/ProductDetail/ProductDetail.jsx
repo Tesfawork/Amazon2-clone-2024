@@ -1,45 +1,58 @@
-import React, { useState, useEffect } from "react";
-import classes from "./productDetail.module.css";
+/** @format */
+// import style from "./ProductDetail.module.css";
 import LayOut from "../../components/LayOut/LayOut";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { productUrl } from "../../Api/endPoints";
-import Loader from "../../components/Loader/Loader";
+import { useParams } from "react-router-dom";
+import { productUrl } from "../../Api/EndPoints";
 import ProductCard from "../../components/Product/ProductCard";
 
 function ProductDetail() {
-  const { productId } = useParams(); // Fixed parameter case to match the URL param
+  const { productId } = useParams();
   const [product, setProduct] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  console.log(product);
   useEffect(() => {
-    setIsLoading(true);
     axios
       .get(`${productUrl}/products/${productId}`)
       .then((res) => {
+        console.log(res.data); // Log API response
         setProduct(res.data);
-        setIsLoading(false);
+        setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching product:", err);
-        setIsLoading(false);
+        console.error(err);
+        setError(true);
+        setLoading(false);
       });
-  }, [productId]); // Dependency array includes productId to refetch if it changes
+  }, [productId]);
+
+  if (loading) {
+    return (
+      <LayOut>
+        <p>Loading product details...</p>
+      </LayOut>
+    );
+  }
+
+  if (error) {
+    return (
+      <LayOut>
+        <p>Error: Product not found.</p>
+      </LayOut>
+    );
+  }
 
   return (
     <LayOut>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <div className={classes.product_detail}>
-          <ProductCard
-            product={product}
-            flex={true}
-            renderDesc={true}
-            renderAdd={true} // Fixed prop name spelling
-          />
-        </div>
-      )}
+      <h1>Product Detail</h1>
+      <ProductCard
+        product={product}
+        flex={true}
+        renderDesc={true}
+        renderAdd={true}
+      />
     </LayOut>
   );
 }

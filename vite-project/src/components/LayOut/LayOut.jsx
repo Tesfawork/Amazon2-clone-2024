@@ -1,12 +1,19 @@
-import React from "react";
+/** @format */
 
-function LayOut({ children }) {
+import React from "react";
+import PropTypes from "prop-types";
+import Header from "../Header/Header";
+
+const LayOut = ({ children }) => {
   return (
-    <div>
+    <React.Fragment>
       <Header />
       {children}
-    </div>
+    </React.Fragment>
   );
-}
+};
 
+LayOut.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 export default LayOut;

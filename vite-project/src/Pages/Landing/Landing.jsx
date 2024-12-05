@@ -1,4 +1,5 @@
-import React from "react";
+/** @format */
+
 import LayOut from "../../components/LayOut/LayOut";
 import Carousel from "../../components/Carousel/CarouselEffect";
 import Category from "../../components/Category/Category";

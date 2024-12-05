@@ -1,23 +1,24 @@
-import React from "react";
-import { IoMenuSharp } from "react-icons/io5";
-import Classes from "./header.module.css";
+
+import style from './Header.module.css'
+import { AiOutlineMenu } from "react-icons/ai";
 
 function LowerHeader() {
   return (
-    <div className={Classes.Lower_container}>
+    <div className={style.lower_container}>
       <ul>
         <li>
+          <AiOutlineMenu />
           <p>All</p>
         </li>
+        
         <li>Todays Deals</li>
-        <li></li>
-        <li>Custumer Service</li>
-        <li>Registery</li>
-        <li>Gift Card</li>
+        <li>Costumer Service</li>
+        <li>Registry</li>
+        <li>Gift Cards</li>
         <li>Sell</li>
       </ul>
     </div>
-  );
+  )
 }
 
-export default LowerHeader;
+export default LowerHeader

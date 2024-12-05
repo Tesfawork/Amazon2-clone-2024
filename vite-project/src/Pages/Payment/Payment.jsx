@@ -1,11 +1,11 @@
-import React from "react";
-import classes from "./payment.module.css";
+/** @format */
+
 import LayOut from "../../components/LayOut/LayOut";
 
 function Payment() {
   return (
     <LayOut>
-      <div>Payment</div>
+      <div>my payment</div>
     </LayOut>
   );
 }
